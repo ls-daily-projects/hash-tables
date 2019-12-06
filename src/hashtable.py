@@ -1,6 +1,8 @@
-# '''
-# Linked List hash table key/value pair
-# '''
+def djb2_hash(text):
+    h = 5381
+    for char in text:
+        h = (h * 33) + ord(char)
+    return h
 
 
 class LinkedPair:
@@ -38,14 +40,14 @@ class HashTable:
         Hash an arbitrary key using DJB2 hash
         OPTIONAL STRETCH: Research and implement DJB2
         '''
-        pass
+        return djb2_hash(key)
 
     def _hash_mod(self, key):
         '''
         Take an arbitrary key and return a valid integer index
         within the storage capacity of the hash table.
         '''
-        return self._hash(key) % self.capacity
+        return djb2_hash(key) % self.capacity
 
     def insert(self, key, value):
         '''
@@ -79,17 +81,17 @@ class HashTable:
 
         while current_pair:
             if current_pair.key == key:
-                print(
-                    "found", current_pair.value, [pair.value for pair in self.storage if pair is not None])
+                # print(
+                #     "found", current_pair.value, [pair.value for pair in self.storage if pair is not None])
                 if not left_pair:
                     self.storage[index] = current_pair.next
                     del current_pair
-                    print([pair.value for pair in self.storage if pair is not None])
+                    # print([pair.value for pair in self.storage if pair is not None])
                     return
 
                 left_pair.next = current_pair.next
                 del current_pair
-                print([pair.value for pair in self.storage if pair is not None])
+                # print([pair.value for pair in self.storage if pair is not None])
                 return
             left_pair = current_pair
             current_pair = current_pair.next
