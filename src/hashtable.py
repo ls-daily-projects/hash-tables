@@ -1,8 +1,3 @@
-# '''
-# Linked List hash table key/value pair
-# '''
-
-
 def djb2_hash(text):
     h = 5381
     for char in text:
@@ -86,17 +81,17 @@ class HashTable:
 
         while current_pair:
             if current_pair.key == key:
-                print(
-                    "found", current_pair.value, [pair.value for pair in self.storage if pair is not None])
+                # print(
+                #     "found", current_pair.value, [pair.value for pair in self.storage if pair is not None])
                 if not left_pair:
                     self.storage[index] = current_pair.next
                     del current_pair
-                    print([pair.value for pair in self.storage if pair is not None])
+                    # print([pair.value for pair in self.storage if pair is not None])
                     return
 
                 left_pair.next = current_pair.next
                 del current_pair
-                print([pair.value for pair in self.storage if pair is not None])
+                # print([pair.value for pair in self.storage if pair is not None])
                 return
             left_pair = current_pair
             current_pair = current_pair.next
