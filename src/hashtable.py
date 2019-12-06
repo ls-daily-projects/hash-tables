@@ -3,6 +3,13 @@
 # '''
 
 
+def djb2_hash(text):
+    h = 5381
+    for char in text:
+        h = (h * 33) + ord(char)
+    return h
+
+
 class LinkedPair:
     def __init__(self, key, value):
         self.key = key
@@ -38,14 +45,14 @@ class HashTable:
         Hash an arbitrary key using DJB2 hash
         OPTIONAL STRETCH: Research and implement DJB2
         '''
-        pass
+        return djb2_hash(key)
 
     def _hash_mod(self, key):
         '''
         Take an arbitrary key and return a valid integer index
         within the storage capacity of the hash table.
         '''
-        return self._hash(key) % self.capacity
+        return djb2_hash(key) % self.capacity
 
     def insert(self, key, value):
         '''
